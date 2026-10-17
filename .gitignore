@@ -1,20 +1,15 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Testing and environments
-.pytest_cache/
+*.mp4
+*.mkv
+*.avi
+*.mov
+node_modules/
 .venv/
-env/
-venv/
+.DS_Store
 
-# Large model files (>100MB is blocked by GitHub)
-weights/clip/ViT-B-32.pt
 *.pt
-
-# Training runs and outputs
+!**/latest.pt
 runs/
 train_runs/
-backend/screenshots/
-test_output.jpg
+weights/
+*.jpg
+__pycache__/
