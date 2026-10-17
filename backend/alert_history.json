@@ -1,0 +1,65 @@
+[
+  {
+    "timestamp": "20260922_135924",
+    "class_name": "elephant",
+    "confidence": 0.8551,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_135924_elephant.jpg"
+  },
+  {
+    "timestamp": "20260922_140041",
+    "class_name": "cow",
+    "confidence": 0.494,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_140041_cow.jpg"
+  },
+  {
+    "timestamp": "20260922_140202",
+    "class_name": "leopard",
+    "confidence": 0.8751,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_140202_leopard.jpg"
+  },
+  {
+    "timestamp": "20260922_140355",
+    "class_name": "leopard",
+    "confidence": 0.6792,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_140355_leopard.jpg"
+  },
+  {
+    "timestamp": "20260922_140622",
+    "class_name": "cow",
+    "confidence": 0.4468,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_140622_cow.jpg"
+  },
+  {
+    "timestamp": "20260922_151216",
+    "class_name": "horse",
+    "confidence": 0.4126,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_151216_horse.jpg"
+  },
+  {
+    "timestamp": "20260922_151246",
+    "class_name": "horse",
+    "confidence": 0.8198,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_151246_horse.jpg"
+  },
+  {
+    "timestamp": "20260922_151331",
+    "class_name": "cow",
+    "confidence": 0.4617,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_151331_cow.jpg"
+  },
+  {
+    "timestamp": "20260922_152443",
+    "class_name": "leopard",
+    "confidence": 0.2914,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\model\\backend\\screenshots\\alert_20260922_152443_leopard.jpg"
+  }
+]

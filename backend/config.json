@@ -1,0 +1,123 @@
+{
+  "model": {
+    "name": "yolov8s-worldv2.pt",
+    "device": "auto",
+    "inference_fps": 10,
+    "jpeg_quality": 70
+  },
+  "classifier": {
+    "enabled": true,
+    "weights": "weights/animal_classifier.pt",
+    "imgsz": 224,
+    "min_confidence": 0.6
+  },
+  "classes": {
+    "all_classes": [
+      "person",
+      "snake",
+      "monkey",
+      "wild boar",
+      "dog",
+      "cat",
+      "elephant",
+      "tiger",
+      "leopard",
+      "lion",
+      "bear",
+      "crocodile",
+      "wolf",
+      "hyena",
+      "deer",
+      "horse",
+      "cow"
+    ],
+    "target_classes": [
+      "wild boar",
+      "elephant",
+      "tiger",
+      "leopard",
+      "lion",
+      "bear",
+      "wolf",
+      "deer",
+      "horse",
+      "cow"
+    ],
+    "pet_classes": [
+      "dog",
+      "cat"
+    ],
+    "class_prompts": {
+      "person": "person human man woman standing sitting face",
+      "snake": "snake serpent reptile slithering coiled",
+      "monkey": "monkey primate ape swinging wild jungle",
+      "wild boar": "wild boar hog pig tusks bristly",
+      "dog": "domestic dog pet puppy canine",
+      "cat": "domestic cat pet kitten feline",
+      "elephant": "elephant large grey trunk tusks wildlife",
+      "tiger": "tiger striped big cat wildlife",
+      "leopard": "spotted leopard big cat",
+      "lion": "lion wild big cat mane",
+      "bear": "bear grizzly black brown furry",
+      "crocodile": "crocodile alligator reptile scaly",
+      "wolf": "wolf wild grey canine",
+      "hyena": "hyena wild predator africa",
+      "deer": "deer stag antlers wildlife",
+      "horse": "horse equine stallion mare",
+      "cow": "cow cattle dairy bovine"
+    },
+    "confidence_thresholds": {
+      "person": 0.35,
+      "snake": 0.25,
+      "monkey": 0.28,
+      "wild boar": 0.3,
+      "dog": 0.35,
+      "cat": 0.35,
+      "elephant": 0.3,
+      "tiger": 0.32,
+      "leopard": 0.45,
+      "lion": 0.35,
+      "bear": 0.3,
+      "crocodile": 0.25,
+      "wolf": 0.28,
+      "hyena": 0.28,
+      "deer": 0.3,
+      "horse": 0.3,
+      "cow": 0.28
+    }
+  },
+  "temporal_confirmation": {
+    "window_size": 5,
+    "required_hits": 0.45
+  },
+  "alert": {
+    "cooldown_seconds": 30,
+    "sound_enabled": true,
+    "sound_file": "sounds/alert.wav",
+    "screenshot_enabled": true,
+    "screenshots_dir": "screenshots"
+  },
+  "cameras": [
+    {
+      "id": "cam0",
+      "label": "Camera 1",
+      "index": 0,
+      "width": 640,
+      "height": 480,
+      "enabled": true
+    },
+    {
+      "id": "cam1",
+      "label": "Camera 2",
+      "index": 1,
+      "width": 640,
+      "height": 480,
+      "enabled": false
+    }
+  ],
+  "camera": {
+    "index": 0,
+    "width": 640,
+    "height": 480
+  }
+}

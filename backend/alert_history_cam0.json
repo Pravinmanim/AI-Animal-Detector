@@ -1,0 +1,23 @@
+[
+  {
+    "timestamp": "20261017_111952",
+    "class_name": "tiger",
+    "confidence": 0.8479,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\projects\\model\\backend\\screenshots\\alert_20261017_111952_tiger.jpg"
+  },
+  {
+    "timestamp": "20261017_112031",
+    "class_name": "bear",
+    "confidence": 0.7715,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\projects\\model\\backend\\screenshots\\alert_20261017_112031_bear.jpg"
+  },
+  {
+    "timestamp": "20261017_112106",
+    "class_name": "elephant",
+    "confidence": 0.8399,
+    "confirmed": true,
+    "screenshot_path": "C:\\Users\\pravi\\Videos\\Desktop\\projects\\model\\backend\\screenshots\\alert_20261017_112106_elephant.jpg"
+  }
+]

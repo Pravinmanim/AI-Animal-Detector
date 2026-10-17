@@ -1,0 +1,26 @@
+{
+  "cuda": {
+    "device": "CUDA",
+    "model": "yolov8l-worldv2.pt",
+    "cold_start_ms": 1897.2,
+    "median_ms": 97.1,
+    "mean_ms": 100.2,
+    "p95_ms": 118.2,
+    "min_ms": 80.1,
+    "max_ms": 119.1,
+    "fps": 10.3,
+    "vram_used_mb": 790
+  },
+  "cpu": {
+    "device": "CPU",
+    "model": "yolov8l-worldv2.pt",
+    "cold_start_ms": 1254.0,
+    "median_ms": 635.0,
+    "mean_ms": 645.3,
+    "p95_ms": 700.5,
+    "min_ms": 618.7,
+    "max_ms": 712.0,
+    "fps": 1.6,
+    "vram_used_mb": null
+  }
+}

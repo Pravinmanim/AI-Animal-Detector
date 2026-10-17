@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Animal Guard — Multi-Camera Dashboard</title>
+  <meta name="description" content="Real-time multi-camera wildlife intrusion detection dashboard — powered by YOLO-World AI with live camera feeds and instant alerts." />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div class="app-wrapper">
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-brand">
+      <div class="brand-icon">🦎</div>
+      <div>
+        <div class="brand-title">AI Animal Guard</div>
+        <div class="brand-sub">Multi-camera intrusion detection · YOLO-World</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="device-badge" id="device-badge">
+        <span>⚡</span>
+        <span id="device-label">Loading…</span>
+      </div>
+      <div class="cam-count-badge" id="cam-count-badge">
+        <span id="cam-count-label">0 cameras</span>
+      </div>
+      <div class="conn-badge disconnected" id="conn-badge">
+        <div class="conn-dot"></div>
+        <span id="conn-label">Connecting</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── Global Status Bar ──────────────────────────────────────────── -->
+  <section class="status-bar status-clear" id="status-bar" aria-live="polite" aria-atomic="true">
+    <div class="status-left">
+      <div class="status-indicator ind-clear" id="status-indicator">
+        <span id="status-icon">🟢</span>
+      </div>
+      <div>
+        <div class="status-label lbl-clear" id="status-label">ALL CLEAR</div>
+        <div class="status-sub" id="status-sub">No threats detected on any camera</div>
+      </div>
+    </div>
+    <div class="status-right">
+      <div class="stat-pill">
+        <div class="stat-value txt-mono" id="stat-ai-fps">—</div>
+        <div class="stat-label">AI FPS</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-pill">
+        <div class="stat-value txt-mono" id="stat-cam-fps">—</div>
+        <div class="stat-label">CAM FPS</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="confirm-bar-wrap">
+        <div class="stat-label" style="align-self:flex-end">CONFIRMATION</div>
+        <div class="confirm-track">
+          <div class="confirm-fill" id="confirm-fill"></div>
+        </div>
+        <div class="confirm-text" id="confirm-ratio">0/5</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-pill" id="cooldown-pill" style="display:none">
+        <div class="stat-value txt-mono" id="stat-cooldown">—</div>
+        <div class="stat-label">COOLDOWN</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Main Grid ───────────────────────────────────────────── -->
+  <div class="main-grid">
+
+    <!-- Left: Camera Grid -->
+    <div class="gap-col cameras-col">
+      <div class="camera-grid" id="camera-grid">
+        <div class="camera-loading">
+          <div class="spinner"></div>
+          <span>Connecting to cameras…</span>
+        </div>
+      </div>
+    </div><!-- /cameras-col -->
+
+    <!-- Right: Sidebar -->
+    <div class="gap-col sidebar-col">
+
+      <!-- System info -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">System</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.8rem;color:var(--txt-secondary)">Inference device</span>
+            <span class="card-badge txt-mono" id="sys-device">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.8rem;color:var(--txt-secondary)">Model</span>
+            <span class="card-badge txt-mono" id="sys-model">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.8rem;color:var(--txt-secondary)">Target classes</span>
+            <span class="card-badge" id="sys-targets">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.8rem;color:var(--txt-secondary)">Inference latency</span>
+            <span class="card-badge txt-mono" id="sys-latency">—</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.8rem;color:var(--txt-secondary)">Active cameras</span>
+            <span class="card-badge" id="sys-camera">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Settings</span>
+          <button class="btn-ghost" id="btn-save-settings" onclick="saveSettings()">Save</button>
+        </div>
+        <div class="settings-form" style="display:flex;flex-direction:column;gap:12px">
+          <div>
+            <label class="stat-label" style="display:block;margin-bottom:4px;">Target Classes (comma separated)</label>
+            <input type="text" id="input-targets" class="form-input" placeholder="e.g. leopard, bear">
+          </div>
+          <div>
+            <label class="stat-label" style="display:block;margin-bottom:4px;">Pet Classes (comma separated)</label>
+            <input type="text" id="input-pets" class="form-input" placeholder="e.g. dog, cat">
+          </div>
+          <div style="display:flex;gap:12px;">
+            <div style="flex:1;">
+              <label class="stat-label" style="display:block;margin-bottom:4px;">Cooldown (sec)</label>
+              <input type="number" id="input-cooldown" class="form-input" min="0" max="300">
+            </div>
+            <div style="flex:1;display:flex;align-items:flex-end;">
+              <label style="display:flex;align-items:center;gap:8px;font-size:0.8rem;color:var(--txt-secondary);cursor:pointer;padding-bottom:8px;">
+                <input type="checkbox" id="input-sound" style="accent-color:var(--clr-accent);"> Play Sound
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alert history (global — all cameras) -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Alert History</span>
+          <button class="btn-ghost" id="btn-clear-alerts" onclick="clearAlerts()">Clear All</button>
+        </div>
+        <div class="history-list" id="history-list">
+          <div class="no-alerts">
+            <div class="no-alerts-icon">🛡️</div>
+            <div>No alerts fired this session</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sidebar-col -->
+  </div><!-- /main-grid -->
+
+</div><!-- /app-wrapper -->
+
+<!-- ── Alert Toast ──────────────────────────────────────────────── -->
+<div class="alert-toast" id="alert-toast" role="alert" aria-live="assertive">
+  <div class="toast-icon">🚨</div>
+  <div class="toast-content">
+    <div class="toast-title" id="toast-title">ANIMAL DETECTED</div>
+    <div class="toast-body" id="toast-body">Triggering alert…</div>
+  </div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>
